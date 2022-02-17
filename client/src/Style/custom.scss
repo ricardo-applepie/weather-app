@@ -1,0 +1,122 @@
+// use scss for styling
+
+$black: #000000;
+$white: #ffffff;
+$grey: #F8F8F8;		
+$fontSize: 'sans-serif';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'roboto';
+  line-height: 1.1;
+  background-color: grey;
+}
+
+h1 {
+  font-size: 30px;
+  font-family: $fontSize;
+  text-align: center;
+}
+p {
+  color: $black;
+  font-size: 18px;
+  font-family: sans-serif;
+}
+ul li {
+  list-style: none;
+}
+img {
+  width: auto;
+  height: auto;
+}
+.header {
+  text-align: center;
+}
+input {
+  padding: 5px;
+  min-width: 185px;
+  border-radius: 15px;
+  outline: none;
+  border: 1px solid $black;
+}
+a {
+  text-decoration: none;
+  color: $black;
+}
+button {
+  font-size: 15px;
+  cursor: pointer;
+  padding: 6px;
+  background-color: $black;
+  border-radius: 15px;
+  border: none;
+  color: $white;
+  margin: 0 0 0 8px;
+  outline: none;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+.display__flex {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0 20px 0;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: $black;
+  height: 70px;
+  color: $white;
+  padding-left: 20px;
+  h1{
+    text-align: left;
+    font-size: 18px;
+  }
+  img {
+    height: 30px;
+  }
+  .navbar__logo {
+    margin-right: 10px;
+  }
+}
+.wrapper {
+  max-width: 1200px;
+  margin: 10px auto 0 auto;
+
+  .locations {
+    display: grid;
+    grid-template-columns: 350px 350px 350px;
+    gap: 1rem;
+    cursor: pointer;
+    .locations__card {
+      padding: 20px;
+      background-color: $white;
+    }
+   .locations__card-content {
+     margin-left: 15px;
+   }
+ 
+  }
+ .locations__card-detail {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-top: 30px;
+ }
+ 
+}
+
+.dashboard {
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 15px;
+  margin-top: 50px;
+}
