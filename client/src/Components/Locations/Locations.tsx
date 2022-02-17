@@ -37,7 +37,7 @@ function Locations() {
   }
 
 
-function saveLocationIndatodataBase(location :Location) {
+function saveLocationIntodataBase(location :Location) {
    const data = location
    axios.post(`${endPointBaseUrl}/saveLocation`,{params:{locataion:data}} )
   .then(function (response) {
@@ -66,7 +66,7 @@ function getLocationsFromWeatherApi() {
       day:'Monday'
     }
 
-    saveLocationIndatodataBase(location)
+    saveLocationIntodataBase(location)
     setLocations([...locations,location])
     console.log(locationData);
   })
