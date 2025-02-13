@@ -7,25 +7,21 @@ import Bewölkt_Dunkel from '../../assets/Bewölkt_Dunkel.png';
 import axios from 'axios'; 
 
 interface Location {
-  id:number ,
-  name : string,
-  weatherDetails:string,
-  weatherMood :string,
-  day:string
+  id: number ,
+  name: string,
+  weatherDetails: string,
+  weatherMood: string,
+  day: string
 }
 
-interface WeatherImages {
-
-}
 
 function Locations() {
-  
   const [inputvalue, setInputval] = useState<string>('berlin');
   const dispatch = useDispatch();
   const [locations,setLocations] = useState<any>([]); 
-
-
-  let weatherImages = {
+  const [data, setData] = useState({});
+  
+  const weatherImages = {
     bewölktDunkel: Bewölkt_Dunkel,
     sunny:"",
     heavyRainnig:"",
@@ -36,59 +32,48 @@ function Locations() {
     double:""
   }
 
+  const saveLocationIntodataBase = (location :Location) => {
+    const data = location
+    axios.post(`${endPointBaseUrl}/saveLocation`,{params:{locataion:data}} )
+     .then(function (response) {
+        console.log(response);
+        setData(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+  };
 
-function saveLocationIntodataBase(location :Location) {
-   const data = location
-   axios.post(`${endPointBaseUrl}/saveLocation`,{params:{locataion:data}} )
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-
-}
-
-function showModal() {
-  
-}
-
-function getLocationsFromWeatherApi() {
-  axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${inputvalue}&appid=${apiKey}`)
-  .then(function (response) {
-    // handle success
-    let locationData= response.data ; 
-    let location = {
-      id:locations.length + 1 ,
-      name : response.data.name,
-      weatherDetails:response.data.main.temp,
-      weatherMood : response.data.weather[0].main,
-      day:'Monday'
-    }
-
-    saveLocationIntodataBase(location)
-    setLocations([...locations,location])
-    console.log(locationData);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-    // always executed
-  });
-
-}
-
- useEffect(() => {
- },[])
+  const getLocationsFromWeatherApi = () => {
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${inputvalue}&appid=${apiKey}`)
+    .then(function (response) {
+      // handle success
+      let locationData= response.data ; 
+      let location = {
+        id:locations.length + 1 ,
+        name : response.data.name,
+        weatherDetails:response.data.main.temp,
+        weatherMood : response.data.weather[0].main,
+        day:'Monday'
+      }
+      saveLocationIntodataBase(location)
+      setLocations([...locations,location])
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+  };
 
   return (
     <div className="wrapper">
        <h1 className='dashboard'>Dashboard</h1>
        <div className='locations'>   
-        {locations.map((locationItem: Location) => (
-          <div className="locations__card">
+        {locations.map((locationItem: Location, index: number) => (
+          <div className="locations__card" key={`locations__${index}`}>
             <Link to={`/details/${locationItem.id}`}>
               <div>
                 <h2 className='header'>{locationItem.name}</h2>
