@@ -3,7 +3,7 @@ import locationReducer from '../Reducers/locationReducer';
 
 const store = configureStore({
   reducer: {
-     locationReducer
+    locationReducer
   },
 });
 
