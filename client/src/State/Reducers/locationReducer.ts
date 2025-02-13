@@ -1,10 +1,9 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 
 // Define the initial state using that type
-const initialState: any = {
-  locations: [
 
-  ],
+const initialState: any = {
+  locations: []
 };
 
 export const locationReducer = createSlice({
@@ -17,6 +16,5 @@ export const locationReducer = createSlice({
     }
   },
 });
-
 
 export default locationReducer.reducer;
