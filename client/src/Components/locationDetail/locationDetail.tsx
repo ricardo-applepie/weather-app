@@ -1,10 +1,8 @@
 import React from "react";
 
 function LocationDetail() { 
-    return (
-        <div>
-
-        </div>
-    )
+  return (
+    <div> </div>
+  )
 }
-export default LocationDetail ; 
+export default LocationDetail; 
