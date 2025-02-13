@@ -14,7 +14,6 @@ interface Location {
   day: string
 }
 
-
 function Locations() {
   const [inputvalue, setInputval] = useState<string>('berlin');
   const dispatch = useDispatch();
@@ -35,13 +34,13 @@ function Locations() {
   const saveLocationIntodataBase = (location :Location) => {
     const data = location
     axios.post(`${endPointBaseUrl}/saveLocation`,{params:{locataion:data}} )
-     .then(function (response) {
-        console.log(response);
-        setData(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+    .then(function (response) {
+      console.log(response);
+      setData(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
   };
 
   const getLocationsFromWeatherApi = () => {
